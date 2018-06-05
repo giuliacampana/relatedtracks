@@ -11,7 +11,7 @@ const songSchema = mongoose.Schema({
   likes: Number,
   reposts: Number,
   comments: Number,
-  related_tracks: Array,
+  relatedTracks: Array,
 });
 
 const Song = mongoose.model('Song', songSchema);
@@ -20,3 +20,15 @@ Song.collection.insertMany(data, (err, results) => {
   if (err) console.log(err);
   else console.log('success');
 });
+
+const findSongById = (id, callback) => {
+  Song.find({ id }, (err, fetchedSong) => {
+    if (err) callback(err, null);
+    else callback(null, fetchedSong);
+  }).limit(1);
+};
+
+module.exports = {
+  findSongById,
+};
+

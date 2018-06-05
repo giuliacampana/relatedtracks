@@ -13,7 +13,11 @@ app.use(bodyParser.json());
 app.get('/songs/:id', (req, res) => {
   const id = req.params.id;
   console.log(id);
-  res.send('got');
+
+  db.findSongById(id, (err, data) => {
+    if (err) console.log(err);
+    else res.send(data);
+  });
 });
 
 app.post('/likes');

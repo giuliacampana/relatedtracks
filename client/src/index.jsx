@@ -6,6 +6,11 @@ import axios from 'axios';
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      song: '5',
+      relatedTracks: [29, 52, 4],
+    };
     this.getRequest = this.getRequest.bind(this);
   }
 
@@ -14,24 +19,15 @@ class App extends React.Component {
   }
 
   getRequest() {
-    console.log(this);
-    console.log('tried');
-    // event.preventDefault();
+    console.log('to get rid of red lines', this);
 
-    // axios.get('/songs', {
-    //   params: {
-    //     id: 5,
-    //   },
-    // })
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-    axios.get('/songs/5')
+    axios.get(`/songs/${this.state.song}`)
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
+        this.setState({
+          song: (response.data[0].id).toString(),
+          relatedTracks: response.data[0].relatedTracks,
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -40,7 +36,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>Hey</div>
+      <div>
+        <h3>Related Tracks</h3>
+      </div>
     );
   }
 }
