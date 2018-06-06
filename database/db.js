@@ -28,7 +28,34 @@ const findSongById = (id, callback) => {
   }).limit(1);
 };
 
+const updateLikeCount = (id, callback) => {
+  Song.findOne({ id }, (err, song) => {
+    if (err) console.log(err);
+    song.likes += 1;
+    song.save(callback);
+  });
+};
+
+const updateRepostCount = (id, callback) => {
+  Song.findOne({ id }, (err, song) => {
+    if (err) console.log(err);
+    song.reposts += 1;
+    song.save(callback);
+  });
+};
+
+const updatePlayCount = (id, callback) => {
+  Song.findOne({ id }, (err, song) => {
+    if (err) console.log(err);
+    song.plays += 1;
+    song.save(callback);
+  });
+};
+
 module.exports = {
   findSongById,
+  updateLikeCount,
+  updateRepostCount,
+  updatePlayCount,
 };
 

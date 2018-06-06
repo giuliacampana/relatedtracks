@@ -1,7 +1,8 @@
-// import css from './style.css';
+import css from '../../public/styles.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import RelatedTrackEntry from './RelatedTrackEntry.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,19 +12,19 @@ class App extends React.Component {
       song: '5',
       relatedTracks: [29, 52, 4],
     };
-    this.getRequest = this.getRequest.bind(this);
+    this.getSongById = this.getSongById.bind(this);
   }
 
   componentDidMount() {
-    this.getRequest();
+    this.getSongById();
   }
 
-  getRequest() {
+  getSongById() {
     console.log('to get rid of red lines', this);
 
     axios.get(`/songs/${this.state.song}`)
       .then((response) => {
-        console.log(response.data);
+        console.log('response', response.data);
         this.setState({
           song: (response.data[0].id).toString(),
           relatedTracks: response.data[0].relatedTracks,
@@ -38,6 +39,9 @@ class App extends React.Component {
     return (
       <div>
         <h3>Related Tracks</h3>
+        {this.state.relatedTracks.map(id => (
+          <RelatedTrackEntry songID={id} />
+        ))}
       </div>
     );
   }
