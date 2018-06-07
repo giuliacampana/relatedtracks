@@ -52,10 +52,19 @@ const updatePlayCount = (id, callback) => {
   });
 };
 
+const updateCommentCount = (id, callback) => {
+  Song.findOne({ id }, (err, song) => {
+    if (err) console.log(err);
+    song.comments += 1;
+    song.save(callback);
+  });
+};
+
 module.exports = {
   findSongById,
   updateLikeCount,
   updateRepostCount,
   updatePlayCount,
+  updateCommentCount,
 };
 

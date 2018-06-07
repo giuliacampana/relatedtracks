@@ -43,6 +43,16 @@ app.post('/songs/:id/plays', (req, res) => {
   });
 });
 
-app.listen(3032, () => {
+app.post('/songs/:id/comments', (req, res) => {
+  const id = req.params.id;
+  db.updateCommentCount(id, (err, data) => {
+    if (err) console.log(err);
+    else res.send(data);
+  });
+});
+
+const server = app.listen(3032, () => {
   console.log('listening on port 3032');
 });
+
+module.exports = server;

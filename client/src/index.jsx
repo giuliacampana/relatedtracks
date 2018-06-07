@@ -9,8 +9,14 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      song: '5',
-      relatedTracks: [29, 52, 4],
+      id: '1',
+      artist: 'fermentum justo nec',
+      title: 'vel dapibus at',
+      plays: 519,
+      likes: 256,
+      reposts: 137,
+      comments: 13,
+      relatedTracks: [64, 15, 57],
     };
     this.getSongById = this.getSongById.bind(this);
   }
@@ -20,13 +26,17 @@ class App extends React.Component {
   }
 
   getSongById() {
-    console.log('to get rid of red lines', this);
-
-    axios.get(`/songs/${this.state.song}`)
+    axios.get(`/songs/${this.state.id}`)
       .then((response) => {
-        console.log('response', response.data);
+        console.log('response', response);
         this.setState({
-          song: (response.data[0].id).toString(),
+          id: (response.data[0].id).toString(),
+          artist: response.data[0].artist,
+          title: response.data[0].title,
+          plays: response.data[0].plays,
+          likes: response.data[0].likes,
+          reposts: response.data[0].reposts,
+          comments: response.data[0].comments,
           relatedTracks: response.data[0].relatedTracks,
         });
       })
@@ -40,7 +50,7 @@ class App extends React.Component {
       <div>
         <h3>Related Tracks</h3>
         {this.state.relatedTracks.map(id => (
-          <RelatedTrackEntry songID={id} />
+          <RelatedTrackEntry id={this.state.id} artist={this.state.artist} title={this.state.title} plays={this.state.plays} likes={this.state.likes} reposts={this.state.reposts} comments={this.state.comments} relatedTracks={this.state.relatedTracks} />
         ))}
       </div>
     );
