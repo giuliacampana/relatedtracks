@@ -7,17 +7,60 @@ class RelatedTrackEntry extends React.Component {
     super(props);
 
     this.state = {
-      plays: 36,
+      id: (this.props.track.id).toString(),
+      artist: this.props.track.artist,
+      title: this.props.track.title,
+      plays: this.props.track.plays,
+      likes: this.props.track.likes,
+      reposts: this.props.track.reposts,
+      comments: this.props.track.comments,
+      relatedTracks: this.props.track.relatedTracks,
     };
 
+    this.updatePlayCount = this.updatePlayCount.bind(this);
     this.handlePlayClick = this.handlePlayClick.bind(this);
+    this.updateLikeCount = this.updateLikeCount.bind(this);
+    this.handleLikeClick = this.handleLikeClick.bind(this);
+  }
+
+  updatePlayCount() {
+    axios.post(`/songs/${this.state.id}/plays`, {
+      plays: this.state.plays,
+    })
+      .then((response) => {
+        console.log(response);
+        this.setState({
+          plays: this.state.plays + 1,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   handlePlayClick(event) {
     event.preventDefault();
-    this.setState({
-      plays: this.state.plays + 1,
-    });
+    this.updatePlayCount();
+  }
+
+  updateLikeCount() {
+    axios.post(`/songs/${this.state.id}/likes`, {
+      likes: this.state.likes,
+    })
+      .then((response) => {
+        console.log(response);
+        this.setState({
+          likes: this.state.likes + 1,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  handleLikeClick(event) {
+    event.preventDefault();
+    this.updateLikeCount();
   }
 
   render() {
@@ -27,13 +70,13 @@ class RelatedTrackEntry extends React.Component {
           <img className="album-cover" />
         </div>
         <div className="media-body">
-          <div className="related-track-entry-artist">{this.props.artist}</div>
-          <div className="related-track-entry-title">{this.props.title}</div>
+          <div className="related-track-entry-artist">{this.state.artist}</div>
+          <div className="related-track-entry-title">{this.state.title}</div>
           <div className="related-track-entry-counts">
-            <div className="plays" onClick={this.handlePlayClick}>{this.props.plays}</div>
-            <div className="likes">{this.props.likes}</div>
-            <div className="reposts">{this.props.reposts}</div>
-            <div className="comments">{this.props.comments}</div>
+            <div className="plays" onClick={this.handlePlayClick}>{this.state.plays}</div>
+            <div className="likes" onClick={this.handleLikeClick}>{this.state.likes}</div>
+            <div className="reposts">{this.state.reposts}</div>
+            <div className="comments">{this.state.comments}</div>
           </div>
         </div>
       </div>

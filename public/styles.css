@@ -32,3 +32,13 @@
   display: inline-block;
   padding-right: 15px;
 }
+
+.plays:hover {
+  color: #e62117;
+  cursor: pointer;
+}
+
+.likes:hover {
+  color: #e62117;
+  cursor: pointer;
+  }

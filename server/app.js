@@ -11,8 +11,6 @@ app.use(bodyParser.json());
 
 app.get('/songs/:id', (req, res) => {
   const id = req.params.id;
-  console.log(id);
-
   db.findSongById(id, (err, data) => {
     if (err) console.log(err);
     else res.send(data);
@@ -38,14 +36,6 @@ app.post('/songs/:id/reposts', (req, res) => {
 app.post('/songs/:id/plays', (req, res) => {
   const id = req.params.id;
   db.updatePlayCount(id, (err, data) => {
-    if (err) console.log(err);
-    else res.send(data);
-  });
-});
-
-app.post('/songs/:id/comments', (req, res) => {
-  const id = req.params.id;
-  db.updateCommentCount(id, (err, data) => {
     if (err) console.log(err);
     else res.send(data);
   });
