@@ -17,10 +17,16 @@ class RelatedTrackEntry extends React.Component {
       relatedTracks: this.props.track.relatedTracks,
     };
 
+    this.clickRelatedTrack = this.clickRelatedTrack.bind(this);
     this.updatePlayCount = this.updatePlayCount.bind(this);
     this.handlePlayClick = this.handlePlayClick.bind(this);
     this.updateLikeCount = this.updateLikeCount.bind(this);
     this.handleLikeClick = this.handleLikeClick.bind(this);
+  }
+
+  clickRelatedTrack(event) {
+    const title = event.target.innerHTML;
+    this.props.clickTrack(title);
   }
 
   updatePlayCount() {
@@ -28,7 +34,6 @@ class RelatedTrackEntry extends React.Component {
       plays: this.state.plays,
     })
       .then((response) => {
-        console.log(response);
         this.setState({
           plays: this.state.plays + 1,
         });
@@ -40,7 +45,7 @@ class RelatedTrackEntry extends React.Component {
 
   handlePlayClick(event) {
     event.preventDefault();
-    this.updatePlayCount();
+    this.updatePlayCount(event);
   }
 
   updateLikeCount() {
@@ -48,7 +53,6 @@ class RelatedTrackEntry extends React.Component {
       likes: this.state.likes,
     })
       .then((response) => {
-        console.log(response);
         this.setState({
           likes: this.state.likes + 1,
         });
@@ -60,7 +64,7 @@ class RelatedTrackEntry extends React.Component {
 
   handleLikeClick(event) {
     event.preventDefault();
-    this.updateLikeCount();
+    this.updateLikeCount(event);
   }
 
   render() {
@@ -71,7 +75,7 @@ class RelatedTrackEntry extends React.Component {
         </div>
         <div className="media-body">
           <div className="related-track-entry-artist">{this.state.artist}</div>
-          <div className="related-track-entry-title">{this.state.title}</div>
+          <div className="related-track-entry-title" onClick={this.clickRelatedTrack}>{this.state.title}</div>
           <div className="related-track-entry-counts">
             <div className="plays" onClick={this.handlePlayClick}>{this.state.plays}</div>
             <div className="likes" onClick={this.handleLikeClick}>{this.state.likes}</div>
@@ -85,5 +89,3 @@ class RelatedTrackEntry extends React.Component {
 }
 
 export default RelatedTrackEntry;
-
-// https://i.ytimg.com/vi/0ByoQm-vnYw/default.jpg
