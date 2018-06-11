@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import css from '../../public/styles.css';
+import css from '../../../public/styles.css';
 import RelatedTrackEntry from './RelatedTrackEntry';
 
 class RelatedTrackList extends React.Component {

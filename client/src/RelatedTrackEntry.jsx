@@ -15,13 +15,17 @@ class RelatedTrackEntry extends React.Component {
       reposts: this.props.track.reposts,
       comments: this.props.track.comments,
       relatedTracks: this.props.track.relatedTracks,
+      playing: false,
+      showDropdown: false,
     };
 
     this.clickRelatedTrack = this.clickRelatedTrack.bind(this);
     this.updatePlayCount = this.updatePlayCount.bind(this);
     this.handlePlayClick = this.handlePlayClick.bind(this);
+    this.handlePauseClick = this.handlePauseClick.bind(this);
     this.updateLikeCount = this.updateLikeCount.bind(this);
     this.handleLikeClick = this.handleLikeClick.bind(this);
+    this.handleDropdownClick = this.handleDropdownClick.bind(this);
   }
 
   clickRelatedTrack(event) {
@@ -45,7 +49,17 @@ class RelatedTrackEntry extends React.Component {
 
   handlePlayClick(event) {
     event.preventDefault();
+    this.setState({
+      playing: true,
+    });
     this.updatePlayCount(event);
+  }
+
+  handlePauseClick(event) {
+    event.preventDefault();
+    this.setState({
+      playing: false,
+    });
   }
 
   updateLikeCount() {
@@ -67,20 +81,111 @@ class RelatedTrackEntry extends React.Component {
     this.updateLikeCount(event);
   }
 
+  handleDropdownClick(event) {
+    this.setState({
+      showDropdown: !this.state.showDropdown,
+    });
+  }
+
   render() {
+    if (!this.state.playing) {
+      return (
+        <div className="related-track-entry">
+          <div className="media-left media-middle">
+            <div className="box-placeholder">
+              <i className="material-icons md-48" onClick={this.handlePlayClick}>play_circle_filled</i>
+            </div>
+          </div>
+          <div className="media-body">
+            <div className="related-track-entry-artist">{this.state.artist}</div>
+            <div className="related-track-entry-title static" onClick={this.clickRelatedTrack}>
+              <span>{this.state.title}</span>
+              <span className="like-button" onClick={this.handleLikeClick}><ion-icon name="heart" /></span>
+              <span className="dot-dot-dot">
+                <i className="material-icons md-24" onClick={this.handleDropdownClick}>more_horiz</i>
+                { this.state.showDropdown ? (
+                  <div className="dropdown-content">
+                    <div className="dropdown-repost">
+                      <ion-icon name="repeat" className="dropdown-icon" />
+                      <span>Repost</span>
+                    </div>
+                    <div className="dropdown-share">
+                      <ion-icon name="open" className="dropdown-icon" />
+                      <span>Share</span>
+                    </div>
+                    <div className="dropdown-next">
+                      <i className="material-icons">playlist_play</i>
+                      <span>Add to Next up</span>
+                    </div>
+                    <div className="dropdown-playlist">
+                      <i className="material-icons">playlist_add</i>
+                      <span>Add to playlist</span>
+                    </div>
+                    <div className="dropdown-station">
+                      <ion-icon name="radio"></ion-icon>
+                      <span>Station</span>
+                    </div>
+                  </div>
+                ) : (
+                      null
+                  ) 
+                }
+                
+              </span>
+            </div>
+            <div className="related-track-entry-counts">
+              <div className="plays">
+                <ion-icon name="play" />
+                <span className="play-count">{this.state.plays}</span>
+              </div>
+              <div className="likes" onClick={this.handleLikeClick}>
+                <ion-icon name="heart" />
+                <span className="like-count">{this.state.likes}</span>
+              </div>
+              <div className="reposts">
+                <ion-icon name="repeat" />
+                <span className="repost-count">{this.state.reposts}</span>
+              </div>
+              <div className="comments">
+                <ion-icon name="chatbubbles" />
+                <span className="comment-count">{this.state.comments}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
     return (
       <div className="related-track-entry">
         <div className="media-left media-middle">
-          <img className="album-cover" />
+          <div className="box-placeholder">
+            <i className="material-icons md-48" onClick={this.handlePauseClick}>pause_circle_filled</i>
+          </div>
         </div>
         <div className="media-body">
           <div className="related-track-entry-artist">{this.state.artist}</div>
-          <div className="related-track-entry-title" onClick={this.clickRelatedTrack}>{this.state.title}</div>
+          <div className="related-track-entry-title playing" onClick={this.clickRelatedTrack}>
+              <span className="title">{this.state.title}</span>
+              <span className="like-button" onClick={this.handleLikeClick}><ion-icon name="heart" /></span>
+              <span className="dot-dot-dot"><i className="material-icons md-24">more_horiz</i></span>
+          </div>
           <div className="related-track-entry-counts">
-            <div className="plays" onClick={this.handlePlayClick}>{this.state.plays}</div>
-            <div className="likes" onClick={this.handleLikeClick}>{this.state.likes}</div>
-            <div className="reposts">{this.state.reposts}</div>
-            <div className="comments">{this.state.comments}</div>
+            <div className="plays">
+              <ion-icon name="play" />
+              <span className="play-count">{this.state.plays}</span>
+            </div>
+            <div className="likes" onClick={this.handleLikeClick}>
+              <ion-icon name="heart" />
+              <span className="like-count">{this.state.likes}</span>
+            </div>
+            <div className="reposts">
+              <ion-icon name="repeat" />
+              <span className="repost-count">{this.state.reposts}</span>
+            </div>
+            <div className="comments">
+              <ion-icon name="chatbubbles" />
+              <span className="comment-count">{this.state.comments}</span>
+            </div>
           </div>
         </div>
       </div>
