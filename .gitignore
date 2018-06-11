@@ -1,5 +1,5 @@
-node_modules
+coverage/
+node_modules/
 .vscode/settings.json
 dist/main.js
 .DS_Store
-coverage
