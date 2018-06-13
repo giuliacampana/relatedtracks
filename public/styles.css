@@ -1,0 +1,44 @@
+.related-track-entry {
+  padding: 8px;
+  border-style: 1px solid black;
+}
+
+.related-track-entry-artist {
+  font-size: 16px;
+  color: #999;
+}
+
+.related-track-entry-title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.related-track-entry-title:hover {
+  color: #e62117;
+  cursor: pointer;
+}
+
+.media-body {
+  padding-left: 20px;
+}
+
+.related-track-entry-counts {
+  font-size: 14px;
+}
+
+.related-track-entry-counts div {
+  font-size: 14px;
+  vertical-align: top;
+  display: inline-block;
+  padding-right: 15px;
+}
+
+.plays:hover {
+  color: #e62117;
+  cursor: pointer;
+}
+
+.likes:hover {
+  color: #e62117;
+  cursor: pointer;
+  }
