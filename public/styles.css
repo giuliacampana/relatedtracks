@@ -2,9 +2,11 @@ body {
   font-family: 'PT Sans', sans-serif;
 }
 
+/* Headers */
+
 .headers {
   font-size: 18px;
-  color: #999;
+  color: #b7b7b7;
 }
 
 .title {
@@ -25,75 +27,19 @@ body {
     width: 370px;
     height: 1px;
     border: 0;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #cccccc;
     margin: 0;
     padding: 0;
 }
+
+/* Entire entry row, lines 35-end */
 
 .related-track-entry {
   padding: 8px;
   display: flex;
 }
 
-.related-track-entry .media-left .box-placeholder i {
-  visibility: hidden;
-  color: #ff3300;
-  margin-top: 16%;
-  margin-left: 16%;
-}
-
-.like-button {
-  display: none;
-  visibility: hidden;
-  border: 1px solid #999;
-  border-radius: 5px;
-  padding: 1px 5px; 
-}
-
-.material-icons.md-48 {
-  font-size: 48px;
-}
-
-.material-icons.md-24 {
-  font-size: 24px;
-  display: none;
-  visibility: hidden;
-  border: 1px solid #999;
-  border-radius: 5px;
-  /* padding: 1px; */
-}
-
-.dropdown-content div {
-  display: flex;
-  border: 1px solid #999;
-  font-size: 16px;
-  padding: 2px;
-}
-.dropdown-content div span {
-  display: inline-block;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 10px;
-}
-
-.related-track-entry:hover .media-left .box-placeholder i {
-  visibility: visible;
-  cursor: pointer;
-}
-
-.related-track-entry:hover .media-right .like-button {
-  visibility: visible;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.related-track-entry:hover .media-right .material-icons.md-24 {
-  visibility: visible;
-  display: inline-flex;
-  cursor: pointer;
-}
-
+/* Album cover */
 .media-left {
   display: flex;
 }
@@ -104,16 +50,101 @@ body {
   border: 1px solid black;
 }
 
+/* Hover buttons, lines 53-130 */
+
+.media-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Big orange play button */
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
+.related-track-entry .media-left .box-placeholder i {
+  cursor: pointer;
+  color: #ff3300;
+  margin-top: 16%;
+  margin-left: 16%;
+}
+
+.related-track-entry .media-left .box-placeholder .material-icons.md-48.dropdown {
+  visibility: visible;
+  cursor: pointer;
+}
+
+/* Hover heart button */
+.like-button {
+  display: inline-block;
+  cursor: pointer;
+  /* display: none;
+  visibility: hidden; */
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 1px 5px; 
+}
+
+/* .related-track-entry:hover .media-right .like-button {
+  visibility: visible;
+  display: inline-block;
+  cursor: pointer;
+} */
+
+/* Hover dot dot dot button */
+.material-icons.md-24.more {
+  font-size: 24px;
+  display: inline;
+  cursor: pointer;
+  /* display: none;
+  visibility: hidden; */
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
+/* .related-track-entry:hover .media-right .material-icons.md-24.more {
+  visibility: visible;
+  display: inline-flex;
+  cursor: pointer;
+} */
+
+/* Dropdown menu */
+
+/* Each row in dropdown */
+.dropdown-content div {
+  display: flex;
+  border: 1px solid #cccccc;
+  font-size: 16px;
+  padding: 2px;
+}
+
+/* Makes each row appear gray on hover */
+.dot-dot-dot div div:hover {
+  cursor: pointer;
+  background-color: #f4f4f4;
+}
+
+/* Each line of text in dropdown */
+.dropdown-content div span {
+  display: inline-block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 15px;
+}
+
+/* Song info */
+
 .media-body {
   padding-left: 20px;
   padding-top: 0px;
   display: inline-block;
-  /* border: 1px solid black; */
 }
 
+/* Artist */
 .related-track-entry-artist {
   font-size: 18px;
-  color: #999;
+  color: #adadad;
 }
 
 .related-track-entry-artist:hover {
@@ -121,6 +152,7 @@ body {
   cursor: pointer;
 }
 
+/* Title */
 .related-track-entry-title {
   font-size: 18px;
   letter-spacing: 1px;
@@ -134,14 +166,10 @@ body {
   color: #ff3300;
 }
 
-.media-right {
-  display: flex;
-  align-items: center;
-}
-
+/* Bottom line with counts */
 .related-track-entry-counts {
   font-size: 14px;
-  color: #999;
+  color: #adadad;
 }
 
 .related-track-entry-counts div {

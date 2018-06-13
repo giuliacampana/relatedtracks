@@ -9,15 +9,18 @@ class RelatedTrackList extends React.Component {
 
     this.state = {
       currentSongId: '1',
-      relatedTracksIds: [64, 15, 57],
+      relatedTracksIds: [],
       relatedTracksObjs: [],
+      songPlaying: false,
     };
 
     this.getTracksById = this.getTracksById.bind(this);
     this.handleTitleClick = this.handleTitleClick.bind(this);
+    this.monitorPlay = this.monitorPlay.bind(this);
   }
 
   componentDidMount() {
+    // const id = window.location.pathname.split('/')[2];
     this.getTracksById(this.state.currentSongId);
   }
 
@@ -48,6 +51,12 @@ class RelatedTrackList extends React.Component {
       });
   }
 
+  monitorPlay() {
+    this.setState({
+      songPlaying: !this.state.songPlaying,
+    });
+  }
+
   handleTitleClick(title) {
     let id;
 
@@ -66,7 +75,7 @@ class RelatedTrackList extends React.Component {
       <div className="list">
         {
           this.state.relatedTracksObjs.map(track => (
-            <RelatedTrackEntry track={track} clickTrack={this.handleTitleClick} />
+            <RelatedTrackEntry key={track.id} track={track} clickTrack={this.handleTitleClick} songPlaying={this.state.songPlaying} monitorPlay={this.monitorPlay} />
           ))
         }
       </div>

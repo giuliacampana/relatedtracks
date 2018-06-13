@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import styled from 'styled-components';
+import HoverButtons from './HoverButtons';
+import PlayButton from './PlayButton';
 
 class RelatedTrackEntry extends React.Component {
   constructor(props) {
@@ -15,16 +18,53 @@ class RelatedTrackEntry extends React.Component {
       reposts: this.props.track.reposts,
       comments: this.props.track.comments,
       relatedTracks: this.props.track.relatedTracks,
+      liked: false,
       playing: false,
+      showHoverButtons: false,
       showDropdown: false,
     };
 
+    this.onHover = this.onHover.bind(this);
+    this.onHoverLeave = this.onHoverLeave.bind(this);
+    this.enableMouseLeave = this.enableMouseLeave.bind(this);
     this.clickRelatedTrack = this.clickRelatedTrack.bind(this);
     this.updatePlayCount = this.updatePlayCount.bind(this);
     this.handlePlayClick = this.handlePlayClick.bind(this);
+    this.handlePauseClick = this.handlePauseClick.bind(this);
     this.updateLikeCount = this.updateLikeCount.bind(this);
     this.handleLikeClick = this.handleLikeClick.bind(this);
-    this.handleDropdownClick = this.handleDropdownClick.bind(this);
+  }
+
+  onHover() {
+    this.setState({
+      showHoverButtons: true,
+    });
+  }
+
+  onHoverLeave() {
+    if (!this.state.playing) {
+      this.setState({
+        showHoverButtons: false,
+      });
+    }
+    if (this.state.playing) {
+      this.setState({
+        showHoverButtons: true,
+      });
+    }
+    if (this.state.showDropdown) {
+      this.setState({
+        showHoverButtons: true,
+      });
+    }
+  }
+
+  enableMouseLeave() {
+    if (!this.state.showDropdown) {
+      this.onHoverLeave();
+    } else {
+      null;
+    }
   }
 
   clickRelatedTrack(event) {
@@ -48,10 +88,31 @@ class RelatedTrackEntry extends React.Component {
 
   handlePlayClick(event) {
     event.preventDefault();
+
+    if (!this.props.songPlaying) {
+      this.props.monitorPlay();
+
+      this.setState({
+        playing: true,
+        showHoverButtons: true,
+        showDropdown: false,
+      });
+  
+      this.updatePlayCount(event);
+
+    } else {
+      null;
+    }
+  }
+
+  handlePauseClick(event) {
+    event.preventDefault();
+
+    this.props.monitorPlay();
+
     this.setState({
-      playing: !this.state.playing,
+      playing: false,
     });
-    this.updatePlayCount(event);
   }
 
   updateLikeCount() {
@@ -70,31 +131,33 @@ class RelatedTrackEntry extends React.Component {
 
   handleLikeClick(event) {
     event.preventDefault();
-    this.updateLikeCount(event);
-  }
-
-  handleDropdownClick(event) {
-    this.setState({
-      showDropdown: !this.state.showDropdown,
-    });
+    if (!this.state.liked) {
+      this.updateLikeCount(event);
+      this.setState({
+        liked: true,
+      });
+    }
   }
 
   render() {
     let titleClass;
-    let button;
     if (!this.state.playing) {
       titleClass = "related-track-entry-title static";
-      button = "play_circle_filled";
     } else {
-      titleClass = "related-track-entry-title playing"; 
-      button = "pause_circle_filled";
+      titleClass = "related-track-entry-title playing";
     }
     
     return (
-      <div className="related-track-entry">
+      <div className="related-track-entry" onMouseEnter={this.onHover} onMouseLeave={this.enableMouseLeave}>
         <div className="media-left media-middle">
           <div className="box-placeholder">
-            <i className="material-icons md-48" onClick={this.handlePlayClick}>{button}</i>
+            {
+              this.state.showHoverButtons ? (
+                <PlayButton playing={this.state.playing} handlePlayClick={this.handlePlayClick} handlePauseClick={this.handlePauseClick} />
+              ) : (
+                null
+              )
+            }
           </div>
         </div>
         <div className="media-body">
@@ -121,39 +184,13 @@ class RelatedTrackEntry extends React.Component {
             </div>
           </div>
         </div>
-        <div className="media-right">
-            <span className="like-button" onClick={this.handleLikeClick}><ion-icon name="heart" /></span>
-            <span className="dot-dot-dot">
-              <i className="material-icons md-24" onClick={this.handleDropdownClick}>more_horiz</i>
-              { this.state.showDropdown ? (
-                <div className="dropdown-content">
-                  <div className="dropdown-repost">
-                    <ion-icon name="repeat" className="dropdown-icon" />
-                    <span>Repost</span>
-                  </div>
-                  <div className="dropdown-share">
-                    <ion-icon name="open" className="dropdown-icon" />
-                    <span>Share</span>
-                  </div>
-                  <div className="dropdown-next">
-                    <i className="material-icons">playlist_play</i>
-                    <span>Add to Next up</span>
-                  </div>
-                  <div className="dropdown-playlist">
-                    <i className="material-icons">playlist_add</i>
-                    <span>Add to playlist</span>
-                  </div>
-                  <div className="dropdown-station">
-                    <ion-icon name="radio"></ion-icon>
-                    <span>Station</span>
-                  </div>
-                </div>
-            ) : (
-                  null
-              )
-            }
-          </span>
-        </div>
+        {
+          this.state.showHoverButtons ? (
+            <HoverButtons likes={this.state.likes} liked={this.state.liked} showHoverButtons={this.state.showHoverButtons} showDropdown={this.state.showDropdown} handleLikeClick={this.handleLikeClick} />
+          ) : (
+            null
+          )
+        }
       </div>
     );
   }
