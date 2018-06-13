@@ -8,7 +8,7 @@ class RelatedTrackList extends React.Component {
     super(props);
 
     this.state = {
-      currentSongId: '1',
+      currentSongId: '',
       relatedTracksIds: [],
       relatedTracksObjs: [],
       songPlaying: false,
@@ -20,13 +20,15 @@ class RelatedTrackList extends React.Component {
   }
 
   componentDidMount() {
-    // const id = window.location.pathname.split('/')[2];
-    this.getTracksById(this.state.currentSongId);
+    const id = window.location.pathname.split('/')[2];
+    this.getTracksById(id);
   }
 
   getTracksById(id) {
-    axios.get(`/songs/${id}`)
+    axios.get(`/api/songs/${id}`)
       .then((response) => {
+        console.log('response: ', response);
+
         this.setState({
           currentSongId: (response.data[0].id).toString(),
           relatedTracksIds: response.data[0].relatedTracks,
@@ -35,7 +37,7 @@ class RelatedTrackList extends React.Component {
       })
       .then(() => {
         this.state.relatedTracksIds.forEach((id) => {
-          axios.get(`/songs/${id.toString()}`)
+          axios.get(`/api/songs/${id.toString()}`)
             .then((response) => {
               this.setState({
                 relatedTracksObjs: this.state.relatedTracksObjs.concat(response.data),

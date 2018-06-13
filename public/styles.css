@@ -1,28 +1,28 @@
-body {
+/* body {
   font-family: 'PT Sans', sans-serif;
-}
+} */
 
 /* Headers */
 
-.headers {
+/* .headers {
   font-size: 18px;
   color: #b7b7b7;
-}
+} */
 
-.title {
+/* .title {
   padding-left: 8px;
 }
 .view-all {
   width: 215px;
   text-align: right;
-}
+} */
 
-.view-all:hover {
+/* .view-all:hover {
   color: black;
   cursor: pointer;
-}
+} */
 
-.line {
+/* .line {
     display: block;
     width: 370px;
     height: 1px;
@@ -30,35 +30,35 @@ body {
     border-top: 1px solid #cccccc;
     margin: 0;
     padding: 0;
-}
+} */
 
 /* Entire entry row, lines 35-end */
 
-.related-track-entry {
+/* .related-track-entry {
   padding: 8px;
   display: flex;
-}
+} */
 
 /* Album cover */
-.media-left {
+/* .media-left {
   display: flex;
-}
+} */
 
-.box-placeholder {
+/* .box-placeholder {
   width: 70px;
   height: 70px;
   border: 1px solid black;
-}
+} */
 
 /* Hover buttons, lines 53-130 */
 
-.media-right {
+/* .media-right {
   display: flex;
   align-items: center;
-}
+} */
 
 /* Big orange play button */
-.material-icons.md-48 {
+/* .material-icons.md-48 {
   font-size: 48px;
 }
 
@@ -67,23 +67,23 @@ body {
   color: #ff3300;
   margin-top: 16%;
   margin-left: 16%;
-}
+} */
 
-.related-track-entry .media-left .box-placeholder .material-icons.md-48.dropdown {
+/* .related-track-entry .media-left .box-placeholder .material-icons.md-48.dropdown {
   visibility: visible;
   cursor: pointer;
-}
+} */
 
 /* Hover heart button */
-.like-button {
+/* .like-button {
   display: inline-block;
   cursor: pointer;
-  /* display: none;
-  visibility: hidden; */
+  display: none;
+  visibility: hidden;
   border: 1px solid #cccccc;
   border-radius: 5px;
   padding: 1px 5px; 
-}
+} */
 
 /* .related-track-entry:hover .media-right .like-button {
   visibility: visible;
@@ -92,15 +92,15 @@ body {
 } */
 
 /* Hover dot dot dot button */
-.material-icons.md-24.more {
+/* .material-icons.md-24.more {
   font-size: 24px;
   display: inline;
   cursor: pointer;
-  /* display: none;
-  visibility: hidden; */
+  display: none;
+  visibility: hidden;
   border: 1px solid #cccccc;
   border-radius: 5px;
-}
+} */
 
 /* .related-track-entry:hover .media-right .material-icons.md-24.more {
   visibility: visible;
@@ -111,38 +111,38 @@ body {
 /* Dropdown menu */
 
 /* Each row in dropdown */
-.dropdown-content div {
+/* .dropdown-content div {
   display: flex;
   border: 1px solid #cccccc;
   font-size: 16px;
   padding: 2px;
-}
+} */
 
 /* Makes each row appear gray on hover */
-.dot-dot-dot div div:hover {
+/* .dot-dot-dot div div:hover {
   cursor: pointer;
   background-color: #f4f4f4;
-}
+} */
 
 /* Each line of text in dropdown */
-.dropdown-content div span {
+/* .dropdown-content div span {
   display: inline-block;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 15px;
-}
+} */
 
 /* Song info */
 
-.media-body {
+/* .media-body {
   padding-left: 20px;
   padding-top: 0px;
   display: inline-block;
-}
+} */
 
 /* Artist */
-.related-track-entry-artist {
+/* .related-track-entry-artist {
   font-size: 18px;
   color: #adadad;
 }
@@ -150,43 +150,43 @@ body {
 .related-track-entry-artist:hover {
   color: black;
   cursor: pointer;
-}
+} */
 
 /* Title */
-.related-track-entry-title {
+/* .related-track-entry-title {
   font-size: 18px;
   letter-spacing: 1px;
-}
+} */
 
-.related-track-entry-title:hover {
+/* .related-track-entry-title:hover {
   cursor: pointer;
-}
+} */
 
-.related-track-entry-title.playing .title {
+/* .related-track-entry-title.playing .title {
   color: #ff3300;
-}
+} */
 
 /* Bottom line with counts */
-.related-track-entry-counts {
+/* .related-track-entry-counts {
   font-size: 14px;
   color: #adadad;
-}
+} */
 
-.related-track-entry-counts div {
+/* .related-track-entry-counts div {
   font-size: 14px;
   vertical-align: top;
   display: inline-block;
-}
+} */
 
-.plays {
+/* .plays {
   padding-right: 15px;
 }
 
 .play-count {
   padding-left: 2px;
-}
+} */
 
-.likes {
+/* .likes {
   padding-right: 15px;
 }
 
@@ -213,4 +213,4 @@ body {
 
 .comment-count {
   padding-left: 2px;
-}
+} */

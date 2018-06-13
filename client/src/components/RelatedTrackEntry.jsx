@@ -5,6 +5,106 @@ import styled from 'styled-components';
 import HoverButtons from './HoverButtons';
 import PlayButton from './PlayButton';
 
+// CSS Styled Components:
+
+const TrackWrapper = styled.div`
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  width: 370px;
+`;
+
+const AlbumCover = styled.div`
+  width: 70px;
+  height: 70px;
+  border: 1px solid black;
+  order: 0;
+`;
+
+const SongInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  padding-top: 0px;
+`;
+
+const Artist = styled.div`
+  width: inherit;
+  font-size: 18px;
+  color: #adadad;
+  &:hover {
+    color: black;
+    cursor: pointer;
+  }
+`;
+
+const TitleWrapper = styled.div`
+  display: flex;
+  position: relative;
+  width: inherit;
+  font-size: 18px;
+  letter-spacing: 1px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const BlackTitle = styled.span`
+  color: black;
+  z-index: 0;
+`;
+
+const OrangeTitle = styled.span`
+  color: #ff3300;
+  z-index: 0;
+`;
+
+const Counts = styled.div`
+  font-size: 14px;
+  color: #adadad;
+  font-size: 14px;
+  display: flex;
+  width: inherit;
+`;
+
+const Plays = styled.div`
+  padding-right: 15px;
+`;
+
+const PlayCount = styled.span`
+  padding-left: 2px;
+`;
+
+const Likes = styled.div`
+  padding-right: 15px;
+  &:hover {
+    color: black;
+    cursor: pointer;
+  }
+`;
+
+const LikeCount = styled.span`
+  padding-left: 2px;
+`;
+
+const Reposts = styled.div` 
+  padding-right: 15px;
+`;
+
+const RepostCount = styled.span`
+  padding-left: 2px;
+`;
+
+const Comments = styled.div`
+  padding-right: 15px;
+`;
+
+const CommentCount = styled.span`
+  padding-left: 2px;
+`;
+
+// React Component:
+
 class RelatedTrackEntry extends React.Component {
   constructor(props) {
     super(props);
@@ -73,7 +173,7 @@ class RelatedTrackEntry extends React.Component {
   }
 
   updatePlayCount() {
-    axios.post(`/songs/${this.state.id}/plays`, {
+    axios.post(`/api/songs/${this.state.id}/plays`, {
       plays: this.state.plays,
     })
       .then((response) => {
@@ -97,9 +197,8 @@ class RelatedTrackEntry extends React.Component {
         showHoverButtons: true,
         showDropdown: false,
       });
-  
-      this.updatePlayCount(event);
 
+      this.updatePlayCount(event);
     } else {
       null;
     }
@@ -116,7 +215,7 @@ class RelatedTrackEntry extends React.Component {
   }
 
   updateLikeCount() {
-    axios.post(`/songs/${this.state.id}/likes`, {
+    axios.post(`/api/songs/${this.state.id}/likes`, {
       likes: this.state.likes,
     })
       .then((response) => {
@@ -142,56 +241,60 @@ class RelatedTrackEntry extends React.Component {
   render() {
     let titleClass;
     if (!this.state.playing) {
-      titleClass = "related-track-entry-title static";
+      titleClass = 'related-track-entry-title static';
     } else {
-      titleClass = "related-track-entry-title playing";
+      titleClass = 'related-track-entry-title playing';
     }
-    
+
     return (
-      <div className="related-track-entry" onMouseEnter={this.onHover} onMouseLeave={this.enableMouseLeave}>
-        <div className="media-left media-middle">
-          <div className="box-placeholder">
+      <TrackWrapper className="related-track-entry" onMouseEnter={this.onHover} onMouseLeave={this.enableMouseLeave}>
+        <AlbumCover className="box-placeholder">
+          {
+            this.state.showHoverButtons ? (
+              <PlayButton playing={this.state.playing} handlePlayClick={this.handlePlayClick} handlePauseClick={this.handlePauseClick} />
+            ) : (
+              null
+            )
+          }
+        </AlbumCover>
+        <SongInfoWrapper className="media-body">
+          <Artist className="related-track-entry-artist">{this.state.artist}</Artist>
+          <TitleWrapper className="related-track-entry-title" onClick={this.clickRelatedTrack}>
+            {
+              !this.state.playing ? (
+                <BlackTitle className="static-title">{this.state.title}</BlackTitle>
+              ) : (
+                <OrangeTitle className="playing-title">{this.state.title}</OrangeTitle>
+              )
+            }
             {
               this.state.showHoverButtons ? (
-                <PlayButton playing={this.state.playing} handlePlayClick={this.handlePlayClick} handlePauseClick={this.handlePauseClick} />
+                <HoverButtons likes={this.state.likes} liked={this.state.liked} showHoverButtons={this.state.showHoverButtons} showDropdown={this.state.showDropdown} handleLikeClick={this.handleLikeClick} />
               ) : (
                 null
               )
             }
-          </div>
-        </div>
-        <div className="media-body">
-          <div className="related-track-entry-artist">{this.state.artist}</div>
-          <div className={titleClass} onClick={this.clickRelatedTrack}>
-            <span className="title">{this.state.title}</span>
-          </div>
-          <div className="related-track-entry-counts">
-            <div className="plays">
+          </TitleWrapper>
+          <Counts className="related-track-entry-counts">
+            <Plays className="plays">
               <ion-icon name="play" />
-              <span className="play-count">{this.state.plays}</span>
-            </div>
-            <div className="likes" onClick={this.handleLikeClick}>
+              <PlayCount className="play-count">{this.state.plays}</PlayCount>
+            </Plays>
+            <Likes className="likes" onClick={this.handleLikeClick}>
               <ion-icon name="heart" />
-              <span className="like-count">{this.state.likes}</span>
-            </div>
-            <div className="reposts">
+              <LikeCount className="like-count">{this.state.likes}</LikeCount>
+            </Likes>
+            <Reposts className="reposts">
               <ion-icon name="repeat" />
-              <span className="repost-count">{this.state.reposts}</span>
-            </div>
-            <div className="comments">
+              <RepostCount className="repost-count">{this.state.reposts}</RepostCount>
+            </Reposts>
+            <Comments className="comments">
               <ion-icon name="chatbubbles" />
-              <span className="comment-count">{this.state.comments}</span>
-            </div>
-          </div>
-        </div>
-        {
-          this.state.showHoverButtons ? (
-            <HoverButtons likes={this.state.likes} liked={this.state.liked} showHoverButtons={this.state.showHoverButtons} showDropdown={this.state.showDropdown} handleLikeClick={this.handleLikeClick} />
-          ) : (
-            null
-          )
-        }
-      </div>
+              <CommentCount className="comment-count">{this.state.comments}</CommentCount>
+            </Comments>
+          </Counts>
+        </SongInfoWrapper>
+      </TrackWrapper>
     );
   }
 }

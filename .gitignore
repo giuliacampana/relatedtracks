@@ -1,5 +1,5 @@
 coverage/
 node_modules
 .vscode/settings.json
-dist/main.js
+dist/relatedTrackBundle.js
 .DS_Store
