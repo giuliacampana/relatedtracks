@@ -1,44 +1,216 @@
-.related-track-entry {
-  padding: 8px;
-  border-style: 1px solid black;
-}
+/* body {
+  font-family: 'PT Sans', sans-serif;
+} */
 
-.related-track-entry-artist {
-  font-size: 16px;
-  color: #999;
-}
+/* Headers */
 
-.related-track-entry-title {
-  font-weight: bold;
-  font-size: 20px;
-}
+/* .headers {
+  font-size: 18px;
+  color: #b7b7b7;
+} */
 
-.related-track-entry-title:hover {
-  color: #e62117;
+/* .title {
+  padding-left: 8px;
+}
+.view-all {
+  width: 215px;
+  text-align: right;
+} */
+
+/* .view-all:hover {
+  color: black;
   cursor: pointer;
+} */
+
+/* .line {
+    display: block;
+    width: 370px;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #cccccc;
+    margin: 0;
+    padding: 0;
+} */
+
+/* Entire entry row, lines 35-end */
+
+/* .related-track-entry {
+  padding: 8px;
+  display: flex;
+} */
+
+/* Album cover */
+/* .media-left {
+  display: flex;
+} */
+
+/* .box-placeholder {
+  width: 70px;
+  height: 70px;
+  border: 1px solid black;
+} */
+
+/* Hover buttons, lines 53-130 */
+
+/* .media-right {
+  display: flex;
+  align-items: center;
+} */
+
+/* Big orange play button */
+/* .material-icons.md-48 {
+  font-size: 48px;
 }
 
-.media-body {
+.related-track-entry .media-left .box-placeholder i {
+  cursor: pointer;
+  color: #ff3300;
+  margin-top: 16%;
+  margin-left: 16%;
+} */
+
+/* .related-track-entry .media-left .box-placeholder .material-icons.md-48.dropdown {
+  visibility: visible;
+  cursor: pointer;
+} */
+
+/* Hover heart button */
+/* .like-button {
+  display: inline-block;
+  cursor: pointer;
+  display: none;
+  visibility: hidden;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 1px 5px; 
+} */
+
+/* .related-track-entry:hover .media-right .like-button {
+  visibility: visible;
+  display: inline-block;
+  cursor: pointer;
+} */
+
+/* Hover dot dot dot button */
+/* .material-icons.md-24.more {
+  font-size: 24px;
+  display: inline;
+  cursor: pointer;
+  display: none;
+  visibility: hidden;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+} */
+
+/* .related-track-entry:hover .media-right .material-icons.md-24.more {
+  visibility: visible;
+  display: inline-flex;
+  cursor: pointer;
+} */
+
+/* Dropdown menu */
+
+/* Each row in dropdown */
+/* .dropdown-content div {
+  display: flex;
+  border: 1px solid #cccccc;
+  font-size: 16px;
+  padding: 2px;
+} */
+
+/* Makes each row appear gray on hover */
+/* .dot-dot-dot div div:hover {
+  cursor: pointer;
+  background-color: #f4f4f4;
+} */
+
+/* Each line of text in dropdown */
+/* .dropdown-content div span {
+  display: inline-block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 15px;
+} */
+
+/* Song info */
+
+/* .media-body {
   padding-left: 20px;
+  padding-top: 0px;
+  display: inline-block;
+} */
+
+/* Artist */
+/* .related-track-entry-artist {
+  font-size: 18px;
+  color: #adadad;
 }
 
-.related-track-entry-counts {
+.related-track-entry-artist:hover {
+  color: black;
+  cursor: pointer;
+} */
+
+/* Title */
+/* .related-track-entry-title {
+  font-size: 18px;
+  letter-spacing: 1px;
+} */
+
+/* .related-track-entry-title:hover {
+  cursor: pointer;
+} */
+
+/* .related-track-entry-title.playing .title {
+  color: #ff3300;
+} */
+
+/* Bottom line with counts */
+/* .related-track-entry-counts {
   font-size: 14px;
-}
+  color: #adadad;
+} */
 
-.related-track-entry-counts div {
+/* .related-track-entry-counts div {
   font-size: 14px;
   vertical-align: top;
   display: inline-block;
+} */
+
+/* .plays {
   padding-right: 15px;
 }
 
-.plays:hover {
-  color: #e62117;
-  cursor: pointer;
+.play-count {
+  padding-left: 2px;
+} */
+
+/* .likes {
+  padding-right: 15px;
 }
 
 .likes:hover {
-  color: #e62117;
+  color: black;
   cursor: pointer;
-  }
+}
+
+.like-count {
+  padding-left: 2px;
+}
+
+.reposts {
+  padding-right: 15px;
+}
+
+.repost-count {
+  padding-left: 2px;
+}
+
+.comments {
+  padding-right: 15px;
+}
+
+.comment-count {
+  padding-left: 2px;
+} */

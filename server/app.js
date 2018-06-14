@@ -6,10 +6,13 @@ const path = require('path');
 const app = express();
 
 app.use(express.static(path.join(__dirname, '../dist')));
+app.use(express.static(path.join(__dirname, '../public')));
+app.use('/songs/:id', express.static(path.join(__dirname, '../public')));
+app.use('/songs/:id', express.static(path.join(__dirname, '../dist')));
 app.use(bodyParser.json());
 
 
-app.get('/songs/:id', (req, res) => {
+app.get('/api/songs/:id', (req, res) => {
   const id = req.params.id;
   db.findSongById(id, (err, data) => {
     if (err) console.log(err);
@@ -17,7 +20,7 @@ app.get('/songs/:id', (req, res) => {
   });
 });
 
-app.post('/songs/:id/likes', (req, res) => {
+app.post('/api/songs/:id/likes', (req, res) => {
   const id = req.params.id;
   db.updateLikeCount(id, (err, data) => {
     if (err) console.log(err);
@@ -25,7 +28,7 @@ app.post('/songs/:id/likes', (req, res) => {
   });
 });
 
-app.post('/songs/:id/reposts', (req, res) => {
+app.post('/api/songs/:id/reposts', (req, res) => {
   const id = req.params.id;
   db.updateRepostCount(id, (err, data) => {
     if (err) console.log(err);
@@ -33,7 +36,7 @@ app.post('/songs/:id/reposts', (req, res) => {
   });
 });
 
-app.post('/songs/:id/plays', (req, res) => {
+app.post('/api/songs/:id/plays', (req, res) => {
   const id = req.params.id;
   db.updatePlayCount(id, (err, data) => {
     if (err) console.log(err);

@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
-import css from '../../public/styles.css';
-import App from './App';
+import RelatedTrack from './components/RelatedTrack';
 
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<RelatedTrack />, document.getElementById('related-track'));
