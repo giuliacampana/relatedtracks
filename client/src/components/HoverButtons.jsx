@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 
 // CSS Styled Components:
@@ -7,8 +6,9 @@ import styled from 'styled-components';
 const HoverButtonsWrapper = styled.div`
   display: flex;
   position: absolute;
-  z-index: 1;
+  z-index: 0;
   left: 180px;
+  height: 21px;
 `;
 
 const LikeButton = styled.span`
@@ -16,10 +16,18 @@ const LikeButton = styled.span`
   cursor: pointer;
   border: 1px solid #cccccc;
   border-radius: 5px;
+  padding-left: 2px;
+  padding-right: 2px;
+  background-color: white;
+  height: 21px;
+  width: 21px;
+  text-align: center;
 `;
 
 const MoreButton = styled.div`
   display: inline-block;
+  background-color: white;
+  height: 21px;
 `;
 
 const MoreIcon = styled.i`
@@ -34,7 +42,7 @@ const DropdownMenu = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  width: 175px;
+  width: 160px;
 `;
 
 const DropdownRow = styled.div`
@@ -43,7 +51,8 @@ const DropdownRow = styled.div`
   justify-content: flex-start;
   align-content: space-between;
   border: 1px solid #cccccc;
-  font-size: 16px;
+  font-size: 14px;
+  background-color: white;
   padding: 2px;
   &:hover {
     cursor: pointer;

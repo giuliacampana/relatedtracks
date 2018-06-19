@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 import RelatedTrackList from './RelatedTrackList';
 
@@ -7,19 +6,21 @@ import RelatedTrackList from './RelatedTrackList';
 
 const RelatedTracks = styled.div`
   font-family: 'PT Sans', sans-serif;
+  width: 340px;
 `;
 
 const Headers = styled.table`
-  font-size: 18px;
+  font-size: 16px;
   color: #b7b7b7;
 `;
 
 const Title = styled.span`
-  padding-left: 8px;
+  padding-left: 5px;
+  margin-bottom: 5px;
 `;
 
 const ViewAll = styled.td`
-  width: 215px;
+  width: 185px;
   text-align: right;
   &:hover {
     color: black;
@@ -29,7 +30,7 @@ const ViewAll = styled.td`
 
 const Line = styled.div`
   display: block;
-  width: 370px;
+  width: 340px;
   height: 1px;
   border: 0;
   border-top: 1px solid #cccccc;
@@ -46,15 +47,18 @@ const RelatedTrack = () => (
         <tr>
           <td>
             <i className="material-icons">graphic_eq</i>
+          </td>
+          <td>
             <Title className="title">Related tracks</Title>
           </td>
           <ViewAll className="view-all">View all</ViewAll>
         </tr>
       </tbody>
     </Headers>
-    <Line className="line" />
+    <Line className="top-line" />
     <RelatedTrackList />
   </RelatedTracks>
 );
+
 
 export default RelatedTrack;
