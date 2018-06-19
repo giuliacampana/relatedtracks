@@ -1,23 +1,24 @@
 import React from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 
 // CSS Styled Components:
 
 const PlayButtonWrapper = styled.div`
   display: flex;
+  margin-top: 16%;
+  margin-left: 16%;
 `;
 
 const Play = styled.div`
   cursor: pointer;
   color: #ff3300;
+  font-size: 48px;
   align-self: center;
 `;
 
 const Pause = styled.div`
   cursor: pointer;
   color: #ff3300;
-  align-self: center;
 `;
 
 // React Component:
@@ -26,9 +27,9 @@ const PlayButton = props => (
   <PlayButtonWrapper>
     {
       !props.playing ? (
-        <Play><i className="material-icons md-48 play" onClick={props.handlePlayClick}>play_circle_filled</i></Play>
+        <Play onClick={props.handlePlayClick}><ion-icon name="play-circle" /></Play>
         ) : (
-          <Pause> <i className="material-icons md-48 pause" onClick={props.handlePauseClick}>pause_circle_filled</i></Pause>
+          <Pause onClick={props.handlePauseClick}><i className="material-icons md-48">pause_circle_filled</i></Pause>
         )
     }
   </PlayButtonWrapper>

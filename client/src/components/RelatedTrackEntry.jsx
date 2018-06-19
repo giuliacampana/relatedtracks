@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import HoverButtons from './HoverButtons';
@@ -8,17 +7,20 @@ import PlayButton from './PlayButton';
 // CSS Styled Components:
 
 const TrackWrapper = styled.div`
-  margin: 20px;
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
-  width: 370px;
+  width: 367px;
+  // border: 1px solid black;
 `;
 
 const AlbumCover = styled.div`
   width: 70px;
   height: 70px;
-  border: 1px solid black;
   order: 0;
+  background-image: url(${props => props.photo});
+  background-size: contain;
+  // border: 1px solid black;
 `;
 
 const SongInfoWrapper = styled.div`
@@ -26,12 +28,14 @@ const SongInfoWrapper = styled.div`
   flex-direction: column;
   padding-left: 20px;
   padding-top: 0px;
+  // border: 1px solid black;
 `;
 
 const Artist = styled.div`
   width: inherit;
-  font-size: 18px;
+  font-size: 16px;
   color: #adadad;
+  // border: 1px solid black;
   &:hover {
     color: black;
     cursor: pointer;
@@ -42,8 +46,11 @@ const TitleWrapper = styled.div`
   display: flex;
   position: relative;
   width: inherit;
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: 1px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  // border: 1px solid black;
   &:hover {
     cursor: pointer;
   }
@@ -52,11 +59,13 @@ const TitleWrapper = styled.div`
 const BlackTitle = styled.span`
   color: black;
   z-index: 0;
+  // border: 1px solid black;
 `;
 
 const OrangeTitle = styled.span`
   color: #ff3300;
   z-index: 0;
+  // border: 1px solid black;
 `;
 
 const Counts = styled.div`
@@ -65,41 +74,21 @@ const Counts = styled.div`
   font-size: 14px;
   display: flex;
   width: inherit;
+  // border: 1px solid black;
 `;
 
-const Plays = styled.div`
+const CountInfo = styled.div`
   padding-right: 15px;
 `;
 
-const PlayCount = styled.span`
-  padding-left: 2px;
-`;
-
-const Likes = styled.div`
-  padding-right: 15px;
+const LikeCountInfo = CountInfo.extend`
   &:hover {
-    color: black;
     cursor: pointer;
+    color: black;
   }
 `;
 
-const LikeCount = styled.span`
-  padding-left: 2px;
-`;
-
-const Reposts = styled.div` 
-  padding-right: 15px;
-`;
-
-const RepostCount = styled.span`
-  padding-left: 2px;
-`;
-
-const Comments = styled.div`
-  padding-right: 15px;
-`;
-
-const CommentCount = styled.span`
+const Count = styled.span`
   padding-left: 2px;
 `;
 
@@ -111,6 +100,7 @@ class RelatedTrackEntry extends React.Component {
 
     this.state = {
       id: (this.props.track.id).toString(),
+      albumCover: this.props.track.albumCover,
       artist: this.props.track.artist,
       title: this.props.track.title,
       plays: this.props.track.plays,
@@ -239,16 +229,10 @@ class RelatedTrackEntry extends React.Component {
   }
 
   render() {
-    let titleClass;
-    if (!this.state.playing) {
-      titleClass = 'related-track-entry-title static';
-    } else {
-      titleClass = 'related-track-entry-title playing';
-    }
-
     return (
+
       <TrackWrapper className="related-track-entry" onMouseEnter={this.onHover} onMouseLeave={this.enableMouseLeave}>
-        <AlbumCover className="box-placeholder">
+        <AlbumCover photo={this.state.albumCover}>
           {
             this.state.showHoverButtons ? (
               <PlayButton playing={this.state.playing} handlePlayClick={this.handlePlayClick} handlePauseClick={this.handlePauseClick} />
@@ -276,22 +260,22 @@ class RelatedTrackEntry extends React.Component {
             }
           </TitleWrapper>
           <Counts className="related-track-entry-counts">
-            <Plays className="plays">
+            <CountInfo className="plays">
               <ion-icon name="play" />
-              <PlayCount className="play-count">{this.state.plays}</PlayCount>
-            </Plays>
-            <Likes className="likes" onClick={this.handleLikeClick}>
+              <Count className="play-count">{this.state.plays}</Count>
+            </CountInfo>
+            <LikeCountInfo className="likes" onClick={this.handleLikeClick}>
               <ion-icon name="heart" />
-              <LikeCount className="like-count">{this.state.likes}</LikeCount>
-            </Likes>
-            <Reposts className="reposts">
+              <Count className="like-count">{this.state.likes}</Count>
+            </LikeCountInfo>
+            <CountInfo className="reposts">
               <ion-icon name="repeat" />
-              <RepostCount className="repost-count">{this.state.reposts}</RepostCount>
-            </Reposts>
-            <Comments className="comments">
+              <Count className="repost-count">{this.state.reposts}</Count>
+            </CountInfo>
+            <CountInfo className="comments">
               <ion-icon name="chatbubbles" />
-              <CommentCount className="comment-count">{this.state.comments}</CommentCount>
-            </Comments>
+              <Count className="comment-count">{this.state.comments}</Count>
+            </CountInfo>
           </Counts>
         </SongInfoWrapper>
       </TrackWrapper>
