@@ -20,7 +20,9 @@ Album cover photos are hosted on S3 and a deployed MongoDB database is hosted on
 
 ## Usage
 
-> Some usage instructions
+> Run the following command in your terminal to start server and webpack:
+
+    "npm run start"
 
 ## Requirements
 
