@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import playButton from '../../../public/play-button.png';
+import pauseButton from '../../../public/pause-button.png';
 
 // CSS Styled Components:
 
@@ -7,18 +9,14 @@ const PlayButtonWrapper = styled.div`
   display: flex;
   margin-top: 16%;
   margin-left: 16%;
+  background: none;
 `;
 
-const Play = styled.div`
+const Button = styled.img`
   cursor: pointer;
-  color: #ff3300;
-  font-size: 48px;
   align-self: center;
-`;
-
-const Pause = styled.div`
-  cursor: pointer;
-  color: #ff3300;
+  width: 48px;
+  height: 48px;
 `;
 
 // React Component:
@@ -27,12 +25,13 @@ const PlayButton = props => (
   <PlayButtonWrapper>
     {
       !props.playing ? (
-        <Play onClick={props.handlePlayClick}><ion-icon name="play-circle" /></Play>
+        <Button onClick={props.handlePlayClick} src={playButton} />
         ) : (
-          <Pause onClick={props.handlePauseClick}><i className="material-icons md-48">pause_circle_filled</i></Pause>
+          <Button onClick={props.handlePauseClick} src={pauseButton} />
         )
     }
   </PlayButtonWrapper>
 );
 
 export default PlayButton;
+
