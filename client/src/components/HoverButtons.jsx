@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 const HoverButtonsWrapper = styled.div`
   display: flex;
+  flex-direction: row;
   position: absolute;
   z-index: 0;
   left: 180px;
@@ -12,7 +13,6 @@ const HoverButtonsWrapper = styled.div`
 `;
 
 const LikeButton = styled.span`
-  display: inline-block;
   cursor: pointer;
   border: 1px solid #cccccc;
   border-radius: 5px;
@@ -21,21 +21,21 @@ const LikeButton = styled.span`
   background-color: white;
   height: 21px;
   width: 21px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const MoreButton = styled.div`
-  display: inline-block;
   background-color: white;
   height: 21px;
+  cursor: pointer;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
 `;
 
 const MoreIcon = styled.i`
   font-size: 24px;
-  display: inline;
-  cursor: pointer;
-  border: 1px solid #cccccc;
-  border-radius: 5px;
 `;
 
 const DropdownMenu = styled.div`

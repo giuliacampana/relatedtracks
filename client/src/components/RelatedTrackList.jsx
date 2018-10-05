@@ -1,6 +1,15 @@
 import React from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import RelatedTrackEntry from './RelatedTrackEntry';
+
+const List = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 250px;
+  width: 340px;
+`;
 
 class RelatedTrackList extends React.Component {
   constructor(props) {
@@ -73,13 +82,13 @@ class RelatedTrackList extends React.Component {
 
   render() {
     return (
-      <div className="list">
+      <List className="list">
         {
           this.state.relatedTracksObjs.map(track => (
             <RelatedTrackEntry key={track.id} track={track} clickTrack={this.handleTitleClick} songPlaying={this.state.songPlaying} monitorPlay={this.monitorPlay} />
           ))
         }
-      </div>
+      </List>
     );
   }
 }

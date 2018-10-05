@@ -7,11 +7,9 @@ import PlayButton from './PlayButton';
 // CSS Styled Components:
 
 const TrackWrapper = styled.div`
-  margin-top: 20px;
   display: flex;
   flex-direction: row;
-  width: 367px;
-  // border: 1px solid black;
+  width: 340px;
 `;
 
 const AlbumCover = styled.div`
@@ -19,8 +17,7 @@ const AlbumCover = styled.div`
   height: 70px;
   order: 0;
   background-image: url(${props => props.photo});
-  background-size: contain;
-  // border: 1px solid black;
+  background-size: cover;
 `;
 
 const SongInfoWrapper = styled.div`
@@ -28,14 +25,12 @@ const SongInfoWrapper = styled.div`
   flex-direction: column;
   padding-left: 20px;
   padding-top: 0px;
-  // border: 1px solid black;
 `;
 
 const Artist = styled.div`
   width: inherit;
   font-size: 16px;
   color: #adadad;
-  // border: 1px solid black;
   &:hover {
     color: black;
     cursor: pointer;
@@ -50,7 +45,6 @@ const TitleWrapper = styled.div`
   letter-spacing: 1px;
   padding-top: 1px;
   padding-bottom: 1px;
-  // border: 1px solid black;
   &:hover {
     cursor: pointer;
   }
@@ -59,13 +53,11 @@ const TitleWrapper = styled.div`
 const BlackTitle = styled.span`
   color: black;
   z-index: 0;
-  // border: 1px solid black;
 `;
 
 const OrangeTitle = styled.span`
   color: #ff3300;
   z-index: 0;
-  // border: 1px solid black;
 `;
 
 const Counts = styled.div`
@@ -74,11 +66,13 @@ const Counts = styled.div`
   font-size: 14px;
   display: flex;
   width: inherit;
-  // border: 1px solid black;
+  align-items: center;
 `;
 
 const CountInfo = styled.div`
   padding-right: 15px;
+  display: flex;
+  align-items: center;
 `;
 
 const LikeCountInfo = CountInfo.extend`
