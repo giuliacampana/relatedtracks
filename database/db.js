@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const data = require('../data.json');
 
-mongoose.connect('mongodb://giuliaecampana:Tunestorm2018@ds261450.mlab.com:61450/tunestorm_related_tracks');
+// mongoose.connect('mongodb://giuliaecampana:Tunestorm2018@ds261450.mlab.com:61450/tunestorm_related_tracks');
 
-// mongoose.connect('mongodb://localhost/tunestorm');
+mongoose.connect('mongodb://localhost/tunestorm-related-tracks');
 
 const songSchema = mongoose.Schema({
   id: Number,
