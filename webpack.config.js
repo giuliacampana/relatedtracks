@@ -13,7 +13,7 @@ module.exports = {
     path: DIST_DIR,
     filename: 'relatedTrackBundle.js',
   },
-  watch: false,
+  watch: true,
   module: {
     rules: [
 
