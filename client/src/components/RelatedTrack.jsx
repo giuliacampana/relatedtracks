@@ -12,16 +12,24 @@ const RelatedTracks = styled.div`
 const Headers = styled.table`
   font-size: 16px;
   color: #b7b7b7;
+  display: flex;
+  align-items: center;
+  padding-bottom: 2px;
 `;
 
-const Title = styled.span`
-  padding-left: 5px;
-  margin-bottom: 5px;
+const Icon = styled.div`
+  flex-basis: 10%;
+  display: flex;
+  align-items: center;
 `;
 
-const ViewAll = styled.td`
-  width: 185px;
-  text-align: right;
+const Title = styled.div`
+  flex-basis: 65%;
+`;
+
+const ViewAll = styled.div`
+  flex-basis: 25%;
+  text-align: center;
   &:hover {
     color: black;
     cursor: pointer;
@@ -35,7 +43,7 @@ const Line = styled.div`
   border: 0;
   border-top: 1px solid #cccccc;
   margin: 0;
-  padding: 0;
+  padding-bottom: 15px;
 `;
 
 // React Component:
@@ -43,17 +51,9 @@ const Line = styled.div`
 const RelatedTrack = () => (
   <RelatedTracks className="related-track">
     <Headers className="headers">
-      <tbody>
-        <tr>
-          <td>
-            <i className="material-icons">graphic_eq</i>
-          </td>
-          <td>
-            <Title className="title">Related tracks</Title>
-          </td>
-          <ViewAll className="view-all">View all</ViewAll>
-        </tr>
-      </tbody>
+      <Icon><i className="material-icons">graphic_eq</i></Icon>
+      <Title className="title">Related tracks</Title>
+      <ViewAll className="view-all">View all</ViewAll>
     </Headers>
     <Line className="top-line" />
     <RelatedTrackList />
@@ -62,3 +62,16 @@ const RelatedTrack = () => (
 
 
 export default RelatedTrack;
+
+//   <tbody>
+//   <tr>
+//           <td>
+//             <i className="material-icons">graphic_eq</i>
+//           </td>
+//           <td>
+//             <Title className="title">Related tracks</Title>
+//           </td>
+//           <ViewAll className="view-all">View all</ViewAll>
+//         </tr>
+// </tbody>
+// ;
